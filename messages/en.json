@@ -1,0 +1,23 @@
+{
+    "NavbarLinks": {
+      "aboutMe": "About Me",
+      "experience": "Experience",
+      "education": "Education",
+      "contact": "Contact",
+      "blog": "Blog"
+    },
+    "Sections": {
+      "aboutMe": "About Me",
+      "workExperience": "Work Experience",
+      "educationStudies": "Education and Studies",
+      "contact": "Contact",
+      "personalBlog": "Personal Blog"
+    },
+    "Buttons": {
+      "contact": "Contact",
+      "send": "Send",
+      "cv": "Download C.V",
+      "seeMore": "See More"
+    }
+  }
+  

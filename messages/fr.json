@@ -1,0 +1,23 @@
+{
+    "NavbarLinks": {
+      "aboutMe": "À propos",
+      "experience": "Expérience",
+      "education": "Éducation",
+      "contact": "Contact",
+      "blog": "Blog"
+    },
+    "Sections": {
+      "aboutMe": "À propos de moi",
+      "workExperience": "Expérience professionnelle",
+      "educationStudies": "Éducation et études",
+      "contact": "Contact",
+      "personalBlog": "Blog personnel"
+    },
+    "Buttons": {
+      "contact": "Contact",
+      "send": "Envoyer",
+      "cv": "Télécharger C.V",
+      "seeMore": "Voir plus"
+    }
+  }
+  

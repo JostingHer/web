@@ -13,6 +13,28 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      screens: {
+        'tall': { 'raw': '(min-width: 600px)' },
+        // => @media (min-height: 800px) { ... }
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        '0': '0',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '6': '6px',
+        '8': '8px',
+      },
+      colors: {
+        // ...
+        'web': {
+          blue: '#1da1f2',
+          DEFAULT: 'black',
+          dark: '#0e7490',
+        },
+        // ...
+      },
     },
   },
   plugins: [],
