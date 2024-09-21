@@ -17,7 +17,7 @@ const AboutMe = ({data, dataGenerals} : PropsAboutSection) => {
  
     return (
          <>
-           <section id="About" className="py-20 border-solid border-b-2">
+           <section id="Contact" className="py-20 border-solid border-b-2">
               
                <div className="flex flex-col gap-4 tall:flex-row ">
                 <img className="m-auto max-w-40 rounded-xl" src={urlFor(data?.photo?.asset).width(200).url()} alt="ruben"/>

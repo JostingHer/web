@@ -6,14 +6,14 @@ import BlogSection from "../sections/BlogSection";
 import Experience from '../sections/Experience';
 import Skills from "@/components/Skills";
 import { Generals } from "../types";
+import BtnContact from "@/components/BtnContact";
 
 // OJO
 export const revalidate = 60;
 
-async function getPageFR() {
-  
+async function getPage(locale: string) {
   const query = `
-  *[_type == "website_fr"][0]{
+  *[_type == "website_${locale}"][0]{
       heroHome,
       about,
       experience[] {
@@ -30,108 +30,24 @@ async function getPageFR() {
       }
 }
 `
-
-    const data = await client.fetch(query);
-
-    return data;
+  const data = await client.fetch(query);
+  return data;
 }
-async function getPageEN() {
+
+async function getPosts(locale: string) {
   const query = `
-  *[_type == "website_en"][0]{
-      heroHome,
-      about,
-      experience[] {
-        ... 
-      },
-      education[] {
-        ... 
-      },
-      skills[] {
-        ... 
-      },
-      contact[] {
-        ... 
-      }
-}
-`
-    const data = await client.fetch(query);
-
-    return data;
-}
-
-async function getPageES() {
-  const query = `
-        *[_type == "website_es"][0]{
-            heroHome,
-            about,
-            experience[] {
-              ... 
-            },
-            education[] {
-              ... 
-            },
-            skills[] {
-              ... 
-            },
-            contact[] {
-              ... 
-            }
-      }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-
-
-async function getPostsFR() {
-  const query = `
-        *[_type ==  "post_fr"]{
+        *[_type ==  "post_${locale}"]{
            slug,
           title,
           publishedAt,
           excerpt,
           bodyMD,
           ...
-            }
+        }
     `
-    const data = await client.fetch(query);
-
-    return data;
+  const data = await client.fetch(query);
+  return data;
 }
-async function getPostsEN() {
-  const query = `
-        *[_type ==  "post_en"]{
-                slug,
-                title,
-                publishedAt,
-                excerpt,
-                bodyMD,
-            ...
-
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-
-async function getPostsES() {
-  const query = `
-        *[_type ==  "post_es"]{
-            slug,
-            title,
-            publishedAt,
-            excerpt,
-            bodyMD,
-            ...
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-
 
 async function getGenerals() {
   const query = `
@@ -140,15 +56,9 @@ async function getGenerals() {
           "cvUrl": cv.asset->url
             }
     `
-    const data = await client.fetch(query);
-
-    return data;
+  const data = await client.fetch(query);
+  return data;
 }
-
-
-
-
-
 
 type PropsHomePage = {
   params: {
@@ -160,52 +70,33 @@ export default async function Home({params}: PropsHomePage) {
  
   const { locale } = params;
 
-  let data = [];
-  let posts = [];
-  if (locale === "en") {
-    data = await getPageEN();
-    posts = await getPostsEN();
-  }
-  if (locale === "fr") {
-    data = await getPageFR();
-    posts = await getPostsFR();
-
-  }
-  if (locale === "es") {
-    data = await getPageES();
-    
-    posts = await getPostsES();
-
-  }
-  
+  const data = await getPage(locale);
+  const posts = await getPosts(locale);
 
   const generals: Generals  = await getGenerals();
-
-
-  console.log("Fetched Data CV:", generals.cv.asset)
-  console.log("generals:", generals)
-
+  // console.log("Fetched Data CV:", generals.cv.asset)
+  // console.log("generals:", generals)
   
    // Depuración de datos
-   console.log("Fetched Data:", data);
+   // console.log("Fetched Data:", data);
 
    let aboutSection = data?.about;
-   console.log("About Section:", aboutSection);
+   // console.log("About Section:", aboutSection);
 
    let experienceSection = data?.experience;
-   console.log("experience Section:", experienceSection);
+   // console.log("experience Section:", experienceSection);
 
    let educationSection = data?.education;
-    console.log("education Section:", educationSection);
+    // console.log("education Section:", educationSection);
 
     let contactSection = data?.contact;
-    console.log("contact Section:", contactSection);
+    // console.log("contact Section:", contactSection);
 
     let skillsSection = data?.skills;
-    console.log("skills Section:", skillsSection);
+    // console.log("skills Section:", skillsSection);
 
     let heroHomeSection = data?.heroHome;
-    console.log("heroHome Section:", heroHomeSection);
+    // console.log("heroHome Section:", heroHomeSection);
 
 
 
@@ -215,7 +106,8 @@ export default async function Home({params}: PropsHomePage) {
 
   return (
     <div>
-          <HeroHome data={heroHomeSection} dataGenerals={generals}></HeroHome>
+          <HeroHome data={heroHomeSection} dataGenerals={generals} locale={locale}></HeroHome>
+   
 
           <div className="max-w-screen-md m-auto">
                 <AboutMe data={aboutSection} dataGenerals={generals} />
@@ -225,6 +117,8 @@ export default async function Home({params}: PropsHomePage) {
                 <BlogSection data={posts} locale={locale} />
           </div>
 
+
+          <BtnContact dataGenerals={generals}/>
         
          
     </div>

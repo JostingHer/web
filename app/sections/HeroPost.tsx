@@ -1,7 +1,6 @@
 import React from "react";
 import { HeroBlogData, SectioData } from "../types";
 import { urlFor } from "@/sanity/client";
-import Markdown from "markdown-to-jsx";
 
 type PropsHeroSection = {
     data: SectioData | HeroBlogData | any 

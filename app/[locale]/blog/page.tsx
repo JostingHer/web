@@ -1,101 +1,35 @@
 import HeroBlog from "@/app/sections/HeroBlog";
-import { Post, SectioData, WebsiteData } from "@/app/types";
+import { Post, SectioData } from "@/app/types";
 import BlogCard from "@/components/BlogCard";
 import { client } from "@/sanity/client";
 
 
-async function getPostsFR() {
+async function getPosts(locale: string) {
   const query = `
-        *[_type ==  "post_fr"]{
+        *[_type ==  "post_${locale}"]{
            slug,
           title,
           publishedAt,
           excerpt,
           bodyMD,
           ...
-            }
+        }
     `
-    const data = await client.fetch(query);
-
-    return data;
+  const data = await client.fetch(query);
+  return data;
 }
-async function getPostsEN() {
-  const query = `
-        *[_type ==  "post_en"]{
-                slug,
-                title,
-                publishedAt,
-                excerpt,
-                bodyMD,
-            ...
-
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-
-async function getPostsES() {
-  const query = `
-        *[_type ==  "post_es"]{
-            slug,
-            title,
-            publishedAt,
-            excerpt,
-            bodyMD,
-            ...
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-
 
 export const revalidate = 60;
 
-async function getBlogHeroFR() {
-
+async function getBlogHero(locale: string) {
   const query = `
-  *[_type == "website_fr"][0]{
-
+  *[_type == "website_${locale}"][0]{
       heroBlog
-     
+  }
+  `
+  const data = await client.fetch(query);
+  return data;
 }
-`
-
-    const data = await client.fetch(query);
-
-    return data;
-}
-async function getBlogHeroEN() {
-  const query = `
-  *[_type == "website_en"][0]{
-    
-      heroBlog,
-     
-}
-`
-    const data = await client.fetch(query);
-
-    return data;
-}
-
-async function getBlogHeroES() {
-  const query = `
-        *[_type == "website_es"][0]{
-          
-            heroBlog
-    
-      }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-
-
 
 type PropsBlogPage = {
   params: {
@@ -103,27 +37,11 @@ type PropsBlogPage = {
   }
 }
 
-
 const Blog = async ({params}: PropsBlogPage) => {
-
   const { locale } = params;
 
-  let data : SectioData | null = null;
-  let posts : Post[] = [];
-
-  if (locale === "en") {
-    data = await getBlogHeroEN();
-    posts = await getPostsEN();
-  }
-  if (locale === "fr") {
-    data = await getBlogHeroFR();
-    posts = await getPostsFR();
-  }
-  if (locale === "es") {
-    data = await getBlogHeroES();
-    posts = await getPostsES();
-  }
-
+  const data: SectioData | null = await getBlogHero(locale);
+  const posts: Post[] = await getPosts(locale);
 
 
     return (

@@ -57,9 +57,10 @@ body {
 
 .link {
   position: relative;
+  display: inline-block;
   color: #0284c7;
   text-align: center;
-   padding: 0 0.5rem;
+  padding: 0.5rem 1rem;
 
    transition: all 300ms;
 }
@@ -93,3 +94,91 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+.compartir {
+    position: fixed;
+    width: 300px;
+    left: 63%;
+    bottom: 2%;
+    margin-left: -200px;
+    margin-top: -40px;
+    border-radius: 80px;
+    background: #0284c7;
+    text-align: center; /* Centrar el contenido */
+  }
+  .compartir span {
+    color: #fff;
+    line-height: 50px;
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Centrar horizontalmente */
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    width: 100%; /* Asegurar que el span ocupe todo el ancho */
+  }
+  .compartir nav {
+    font-size: 0;
+  }
+  .compartir a {
+    width: 0;
+    height: 50px;
+    text-align: center;
+    display: inline-block;
+    color: #ffffff;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+    margin: 0;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  .compartir a:nth-child(1) {
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    margin-left: 0;
+  }
+  .compartir a:nth-child(1):hover,
+  .compartir a:nth-child(2):hover,
+  .compartir a:nth-child(3):hover {
+    background-color: #005a8c;
+    transition: background-color 0.3s ease;
+  }
+  
+  .compartir:hover span, .compartir.hover span {
+    opacity: 0;
+  }
+  .compartir:hover a {
+    width: 50px;
+    height: 50px;
+
+    margin: 0 10px;
+    color: white;
+    font-size: 28px;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .compartir:hover a:hover {
+    color: #fff;
+  }
+
+  .compartir nav{
+    display: flex;
+    justify-content: center;
+  }
+
+
+  @media (min-width: 768px) {
+    .compartir {
+      display: none;
+    }
+  }

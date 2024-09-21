@@ -4,143 +4,48 @@ import StyledMarkdown from "@/components/MarkdownCustom";
 import { client } from "@/sanity/client";
 import Markdown from "markdown-to-jsx";
 
-
-async function getArticleFR(slug: string) {
+async function getArticle(slug: string, locale: string) {
   const query = `
-        *[_type ==  "post_fr" && slug.current == "${slug}"][0]{
-           slug, 
-          title,
-          publishedAt,
-          excerpt,
-          bodyMD,
-            ...
-          
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-async function  getArticleEN(slug: string) {
-  const query = `
-        *[_type ==  "post_en" && slug.current == "${slug}"][0]{
-                slug, 
-                title,
-                publishedAt,
-                excerpt,
-                bodyMD,
-            ...
-          
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
+    *[_type == "post_${locale}" && slug.current == "${slug}"][0]{
+      slug,
+      title,
+      publishedAt,
+      excerpt,
+      bodyMD,
+      ...
+    }
+  `
+  const data = await client.fetch(query);
+  return data;
 }
 
-async function  getArticleES(slug: string) {
+async function getPosts(locale: string) {
   const query = `
-        *[_type ==  "post_es" && slug.current == "${slug}"][0]{
-            slug, 
-            title,
-            publishedAt,
-            excerpt,
-            bodyMD,
-            ...
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
+    *[_type == "post_${locale}"]{
+      slug,
+      title,
+      publishedAt,
+      excerpt,
+      bodyMD,
+      ...
+    }
+  `
+  const data = await client.fetch(query);
+  return data;
 }
-
-async function getPostsFR() {
-  const query = `
-        *[_type ==  "post_fr"]{
-           slug,
-          title,
-          publishedAt,
-          excerpt,
-          bodyMD,
-          ...
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-async function getPostsEN() {
-  const query = `
-        *[_type ==  "post_en"]{
-                slug,
-                title,
-                publishedAt,
-                excerpt,
-                bodyMD,
-            ...
-
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-
-async function getPostsES() {
-  const query = `
-        *[_type ==  "post_es"]{
-            slug,
-            title,
-            publishedAt,
-            excerpt,
-            bodyMD,
-            ...
-            }
-    `
-    const data = await client.fetch(query);
-
-    return data;
-}
-
 
 type PropsPostPage = {
   params: {
-      locale: string;
-      post: string;
+    locale: string;
+    post: string;
   }
 }
+
 const Post = async ({params}: PropsPostPage) => {
+  const { locale, post } = params;
 
-  
-    const { locale, post } = params;
-
-    let data;
-    if (locale === "en") {
-      data = await getArticleEN(post);
-    }
-    if (locale === "fr") {
-      data = await getArticleFR(post);
-    }
-    if (locale === "es") {
-      data = await getArticleES(post);
-    }
-    console.log(post)
-    console.log(data)
-
-    let posts = [];
-    if (locale === "en") {
-      posts = await getPostsEN();
-    }
-    if (locale === "fr") {
-      posts = await getPostsFR();
-  
-    }
-    if (locale === "es") {
-      
-      posts = await getPostsES();
-  
-    }
-   
+  const data = await getArticle(post, locale);
+  const posts = await getPosts(locale);
 
 
     

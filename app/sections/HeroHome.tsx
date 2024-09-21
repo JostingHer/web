@@ -5,6 +5,8 @@ import Markdown from "markdown-to-jsx";
 import { useTranslations } from "next-intl";
 import { urlFor } from "@/sanity/client";
 import { Generals } from '../types/index';
+import BtnContact from "@/components/BtnContact";
+import Link from "next/link";
 
 const lato = Lato({
   style: "normal",
@@ -18,8 +20,10 @@ const lato = Lato({
 type PropsHeroSection = {
   data: SectioData | HeroBlogData |any 
   dataGenerals?: Generals
+  locale: string
 }
-const HeroHome = ({data, dataGenerals} : PropsHeroSection) => {
+const HeroHome = ({data, dataGenerals, locale} : PropsHeroSection) => {
+
 
   
   const dataHero : SectioData = data;
@@ -71,9 +75,10 @@ const HeroHome = ({data, dataGenerals} : PropsHeroSection) => {
                 }
               </Markdown>
 
-                <div className="flex gap-2">
+                <div className="flex gap-2 md:flex-row flex-col">
                   <Button isExternal as="a" href={dataGenerals?.cvUrl} iconPosition="left" label={t("cv")} type="light">
                   <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+
                       viewBox="0 0 43.916 43.916"
                       className="h-6 w-6"
                     >
@@ -88,10 +93,10 @@ const HeroHome = ({data, dataGenerals} : PropsHeroSection) => {
                     </g>
                     </svg>
                   </Button>
-                  
-                  
+                  <Link className="font-semibold border-solid border-2 py-2 px-10 flex items-center justify-center duration-500 bg-white text-xl border-white text-black hover:bg-gray-300 hover:border-gray-300" href={`/${locale}/#Contact`}>{t("contact")}</Link>
                   </div>
            
+
           </div>
         </div>
     </div>

@@ -17,15 +17,19 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
+      <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+      </head>
       <body>
       <NextIntlClientProvider messages={messages}>
       <div className="bg-white">
             <Nav locale={locale} />
+        
             {children}
             <Footer locale={locale}/>
           </div>
         </NextIntlClientProvider>
-        
+
         </body>
     </html>
   );
