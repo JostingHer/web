@@ -1,3 +1,4 @@
+import BlogSection from "@/app/sections/BlogSection";
 import HeroBlog from "@/app/sections/HeroBlog";
 import { Post, SectioData } from "@/app/types";
 import BlogCard from "@/components/BlogCard";
@@ -51,19 +52,10 @@ const Blog = async ({params}: PropsBlogPage) => {
         
 
        <div className="max-w-screen-md m-auto">
-        <h2 className="mt-10 mb-10 font-bold text-4xl  text-sky-600">Blog</h2>
-
-          <div className='px-6 grid gap-4 tall:grid-cols-3 pb-20 pt-5'>
-
-          {
-                posts.map((post, index) => (
-                  <BlogCard key={index} post={post} locale={locale} />
-                ))
-              }
-
-
-          </div>
-          </div>
+      
+         <BlogSection data={posts} locale={locale}  />
+         
+        </div>
 
       </>
     );

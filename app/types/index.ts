@@ -95,6 +95,22 @@ export type ContactData = {
     date?: string;
     description?: string;
   };
+
+
+  export type Interview = {
+    link: string;
+    _key: string;
+    title: string;
+    image: {
+      _type: string;
+      asset: {
+        _type: string;
+        url: string; // Asumiendo que 'url' es una propiedad común en los assets de imágenes
+      };
+    };
+    _type: string;
+  }
+  
   
   export type HeroHome = {
     text?: string;
