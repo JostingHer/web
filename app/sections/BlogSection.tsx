@@ -39,8 +39,8 @@ export default async function BlogSection({data, locale} : PropsBlogSection) {
 
     <h2 className="mt-5 mb-10 font-bold text-4xl  text-sky-600">{t("personalBlog")}</h2>
 
-    <div className='grid gap-4 tall:grid-cols-3'>
-    {
+    <div className='grid gap-4 tall:grid-cols-2'>
+       {
           interviewList && interviewList.map((inter, index) => (<InterviewCard key={index} interview={inter} />))
         }
         {

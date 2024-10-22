@@ -1,12 +1,14 @@
 import { Interview } from '@/app/types'; // Asegúrate de que el tipo Interview esté definido en tu archivo de tipos
 import { urlFor } from '@/sanity/client';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 type PropsInterviewCard = {
   interview: Interview;
 };
-
 function InterviewCard({ interview }: PropsInterviewCard) {
+  const t = useTranslations("Buttons");
+
   return (
     <a
       href={`${interview.link}`}
@@ -14,20 +16,35 @@ function InterviewCard({ interview }: PropsInterviewCard) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="overflow-hidden shadow-lg h-64 group">
-        {/* Imagen de portada con efecto de zoom */}
-        <img
-          className="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-110"
-          src={urlFor(interview?.image?.asset).url()}
-          alt={interview.title}
-        />
+      <div className="overflow-hidden shadow-lg w-full aspect-square group">
+        <div className='w-full aspect-auto'>
+          <img
+            className="w-full aspect-auto object-cover transition-transform duration-300 hover:scale-105"
+            src={urlFor(interview?.image?.asset).url()}
+            alt={interview.title}
+          />
+        </div>
 
-        <h3 className='p-2 px-4 text-xl font-medium mt-1 mb-4 text-sky-600'>
-        {interview?.title}
-        </h3>
+        <div className="px-6 py-4">
+          <span className='inline-flex gap-2 text-xl mb-2 items-center text-sky-600 capitalize'>
+            <Icon__svg_link /> {t("interview")}
+          </span>
+          <p className="text-sm text-sky-600 text-[16px] group-hover:underline">
+            {interview?.title}
+          </p>
+        </div>
       </div>
     </a>
   );
 }
+
+
+
+const Icon__svg_link = () => (
+  <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.197 3.35462C16.8703 1.67483 19.4476 1.53865 20.9536 3.05046C22.4596 4.56228 22.3239 7.14956 20.6506 8.82935L18.2268 11.2626M10.0464 14C8.54044 12.4882 8.67609 9.90087 10.3494 8.22108L12.5 6.06212" stroke="#0284C7" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M13.9536 10C15.4596 11.5118 15.3239 14.0991 13.6506 15.7789L11.2268 18.2121L8.80299 20.6454C7.12969 22.3252 4.55237 22.4613 3.0464 20.9495C1.54043 19.4377 1.67609 16.8504 3.34939 15.1706L5.77323 12.7373" stroke="#0284C7" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+)
 
 export default InterviewCard;
