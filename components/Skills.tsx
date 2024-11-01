@@ -13,7 +13,7 @@ const Skills = ({data} : PropsSkillsSection) => {
           data?.map((skill, index) => (
             <div key={index}>
               <img className='max-w-10 mx-auto' src={urlFor(skill?.icon?.asset).url()} alt="skill" />
-              <p className='font-semibold text-center'>{skill?.info}</p>
+              <p className='font-semibold text-black text-center'>{skill?.info}</p>
             </div>
           ))
         }
