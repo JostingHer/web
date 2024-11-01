@@ -30,7 +30,7 @@ const Education = ({data} : PropsEducationSection) => {
                                <img className="my-5 max-w-64 tall:w-32 h-full" src={urlFor(edu?.image?.asset).width(200).url()} alt="imagen" />
               
                                 <div> 
-                                        <h3 className="mb-1 text-2xl font-bold sm:mb-0">{edu?.degree}</h3>
+                                        <h3 className="mb-1 text-2xl text-gray-400 font-bold sm:mb-0">{edu?.degree}</h3>
                                             <div className="flex flex-col items-start mb-1
                                                         group-last:before:hidden before:absolute 
                                                         before:left-2 sm:before:left-0 before:h-4/5
