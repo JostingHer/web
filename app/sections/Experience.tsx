@@ -27,7 +27,7 @@ const Experience = ({data} : PropsExperienceSection) => {
                            <div className="tall:flex tall:justify-between tall:items-center">
                             
                                 <div>
-                                        <h3 className="mb-1 text-2xl font-bold sm:mb-0">{exp?.nameJob}</h3>
+                                        <h3 className="mb-1 text-2xl text-sky-600 font-bold sm:mb-0">{exp?.nameJob}</h3>
                                             <div className="flex flex-col items-start mb-1
                                                         group-last:before:hidden before:absolute 
                                                         before:left-2 sm:before:left-0 before:h-full
