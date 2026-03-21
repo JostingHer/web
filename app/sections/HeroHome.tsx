@@ -7,6 +7,7 @@ import { urlFor } from "@/sanity/client";
 import { Generals } from '../types/index';
 import BtnContact from "@/components/BtnContact";
 import Link from "next/link";
+import Image from "next/image";
 
 const lato = Lato({
   style: "normal",
@@ -34,7 +35,7 @@ const HeroHome = ({data, dataGenerals, locale} : PropsHeroSection) => {
     console.log("aqui estamoa", data?.background?.asset)
     return (
       <div id="HeroHome" className='w-full h-screen'>
-         <img
+         <Image
               className='top-0 left-0 w-full h-screen object-cover'
               src={urlFor(dataHero?.background?.imagenPC?.asset).url()}
               alt="hola"

@@ -3,6 +3,7 @@ import { Education as EducationTypes } from '../types';
 import { urlFor } from '@/sanity/client';
 import { useTranslations } from "next-intl";
 import StyledMarkdown from '@/components/MarkdownCustom';
+import Image from 'next/image';
 
 
 
@@ -27,7 +28,7 @@ const Education = ({data} : PropsEducationSection) => {
                         <div key={index} className="relative py-6 pl-8">
                            <div>
                             
-                               <img className="my-5 max-w-64 tall:w-32 h-full" src={urlFor(edu?.image?.asset).width(200).url()} alt="imagen" />
+                               <Image className="my-5 max-w-64 tall:w-32 h-full" src={urlFor(edu?.image?.asset).width(200).url()} alt="imagen" />
               
                                 <div> 
                                         <h3 className="mb-1 text-2xl text-sky-600 font-bold sm:mb-0">{edu?.degree}</h3>

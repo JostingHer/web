@@ -3,6 +3,7 @@ import { Experience as ExperienceTypes } from '../types';
 import { urlFor } from '@/sanity/client';
 import { useTranslations } from "next-intl";
 import StyledMarkdown from '@/components/MarkdownCustom';
+import Image from 'next/image';
 
 
 
@@ -47,7 +48,7 @@ const Experience = ({data} : PropsExperienceSection) => {
                                             </div>
                                 </div>
 
-                                <img className="my-5 max-w-64 tall:w-32 h-fit" src={urlFor(exp?.image?.asset).width(200).url()} alt="imagen" />
+                                <Image className="my-5 max-w-64 tall:w-32 h-fit" src={urlFor(exp?.image?.asset).width(200).url()} alt="imagen" />
               
 
                            </div>

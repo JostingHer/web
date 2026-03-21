@@ -1,5 +1,6 @@
 import { Post } from '@/app/types';
 import { urlFor } from '@/sanity/client';
+import Image from 'next/image';
 import React from 'react';
 
 type PropsPostCard = {
@@ -13,7 +14,7 @@ function BlogCard({ post, locale }: PropsPostCard) {
       <div className="overflow-hidden shadow-lg w-full aspect-square group">
         {/* Imagen de portada con efecto de zoom */}
         <div className='w-full aspect-auto'>
-          <img
+          <Image
             className="w-full aspect-auto object-cover transition-transform duration-300 hover:scale-105"
             src={urlFor(post?.primaryPhoto?.imagenPC?.asset).url()}
             alt={post.title}

@@ -4,6 +4,7 @@ import { Generals, SectioData } from "../types";
 import { urlFor } from "@/sanity/client";
 import StyledMarkdown from "@/components/MarkdownCustom";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 
 type PropsAboutSection = {
@@ -20,7 +21,7 @@ const AboutMe = ({data, dataGenerals} : PropsAboutSection) => {
            <section id="Contact" className="py-20 border-solid border-b-2">
               
                <div className="flex flex-col gap-4 tall:flex-row ">
-                <img className="m-auto max-w-40 rounded-xl" src={urlFor(data?.photo?.asset).width(200).url()} alt="ruben"/>
+                <Image className="m-auto max-w-40 rounded-xl" src={urlFor(data?.photo?.asset).width(200).url()} alt="ruben"/>
                   <div className="p-6 m-auto">
 
                 <StyledMarkdown className="text-gray-400 ">
@@ -31,10 +32,10 @@ const AboutMe = ({data, dataGenerals} : PropsAboutSection) => {
                 <div className="grid md:grid-cols-2 mb-2">
              
                   <Button isExternal as="a" href={`https://wa.me/${dataGenerals?.contact[0]?.info}?text=¡Hola Ruben Viñals, somos...!`} iconPosition="left" label={dataGenerals?.contact[0]?.info + " "} type="light">
-                        <img  className="w-7" src={urlFor(dataGenerals?.contact[0].icon?.asset).url()}  alt="icon" />
+                        <Image  className="w-7" src={urlFor(dataGenerals?.contact[0].icon?.asset).url()}  alt="icon" />
                   </Button>
                   <Button isExternal as="a" href={`mailto:${dataGenerals?.contact[1].info}`} iconPosition="left" label="Gmail" type="light">
-                        <img  className="w-7" src={urlFor(dataGenerals?.contact[1].icon?.asset).url()}  alt="icon" />
+                        <Image  className="w-7" src={urlFor(dataGenerals?.contact[1].icon?.asset).url()}  alt="icon" />
                   </Button>
                  
                 </div>

@@ -1,6 +1,7 @@
 import { Interview } from '@/app/types'; // Asegúrate de que el tipo Interview esté definido en tu archivo de tipos
 import { urlFor } from '@/sanity/client';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import React from 'react';
 
 type PropsInterviewCard = {
@@ -18,7 +19,7 @@ function InterviewCard({ interview }: PropsInterviewCard) {
     >
       <div className="overflow-hidden shadow-lg w-full aspect-square group">
         <div className='w-full aspect-auto'>
-          <img
+          <Image
             className="w-full aspect-auto object-cover transition-transform duration-300 hover:scale-105"
             src={urlFor(interview?.image?.asset).url()}
             alt={interview.title}

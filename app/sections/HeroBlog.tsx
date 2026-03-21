@@ -4,6 +4,7 @@ import Markdown from "markdown-to-jsx";
 import { Lato } from "next/font/google";
 import { useTranslations } from "next-intl";
 import { urlFor } from "@/sanity/client";
+import Image from "next/image";
 
 
 const lato = Lato({
@@ -29,7 +30,7 @@ const HeroBlog = ({data} : PropsHeroSection) => {
   return (
   <>
           <div className='w-full h-screen'>
-          <img
+          <Image
               className='top-0 left-0 w-full h-screen object-cover'
               src={urlFor(dataHero?.heroBlog.background?.imagenPC?.asset).url()}
               alt="hola"
