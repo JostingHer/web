@@ -35,7 +35,7 @@ const HeroHome = ({data, dataGenerals, locale} : PropsHeroSection) => {
     console.log("aqui estamoa", data?.background?.asset)
     return (
       <div id="HeroHome" className='w-full h-screen'>
-         <Image width={500} height={500}
+         <Image width={1500} height={1500}
               className='top-0 left-0 w-full h-screen object-cover'
               src={urlFor(dataHero?.background?.imagenPC?.asset).url()}
               alt="hola"
