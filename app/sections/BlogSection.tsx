@@ -1,6 +1,6 @@
 'use client'
 import BlogCard from '@/components/BlogCard'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Post } from '../types'
 import { useTranslations } from 'next-intl'
 import { client } from '@/sanity/client'
@@ -11,8 +11,6 @@ type PropsBlogSection = {
   data?: Post[]
   locale: string
 }
-
-
 
 async function getGenerals(){
   const query = `
@@ -25,11 +23,16 @@ async function getGenerals(){
 }
 
 
-export default async function BlogSection({data, locale} : PropsBlogSection) {
+export default function BlogSection({data, locale} : PropsBlogSection) {
 
   const t = useTranslations("Sections");
+  const [interviewList, setInterviewList] = useState<Interview[]>([]);
 
-  const interviewList : Interview[]  = await getGenerals();
+  useEffect(() => {
+    getGenerals().then((list) => {
+      setInterviewList(list || []);
+    });
+  }, []);
 
   console.log(interviewList)
 

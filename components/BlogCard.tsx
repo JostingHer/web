@@ -17,7 +17,7 @@ function BlogCard({ post, locale }: PropsPostCard) {
           <Image
             className="w-full aspect-auto object-cover transition-transform duration-300 hover:scale-105"
             src={urlFor(post?.primaryPhoto?.imagenPC?.asset).url()}
-            alt={post.title}
+            alt={"portada del post"}
           />
         </div>
 
