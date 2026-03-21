@@ -28,7 +28,7 @@ const Education = ({data} : PropsEducationSection) => {
                         <div key={index} className="relative py-6 pl-8">
                            <div>
                             
-                               <Image className="my-5 max-w-64 tall:w-32 h-full" src={urlFor(edu?.image?.asset).width(200).url()} alt="imagen" />
+                               <Image width={500} height={500} className="my-5 max-w-64 tall:w-32 h-full" src={urlFor(edu?.image?.asset).width(200).url()} alt="imagen" />
               
                                 <div> 
                                         <h3 className="mb-1 text-2xl text-sky-600 font-bold sm:mb-0">{edu?.degree}</h3>

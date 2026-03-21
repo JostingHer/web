@@ -48,7 +48,7 @@ const Experience = ({data} : PropsExperienceSection) => {
                                             </div>
                                 </div>
 
-                                <Image className="my-5 max-w-64 tall:w-32 h-fit" src={urlFor(exp?.image?.asset).width(200).url()} alt="imagen" />
+                                <Image width={500} height={500} className="my-5 max-w-64 tall:w-32 h-fit" src={urlFor(exp?.image?.asset).width(200).url()} alt="imagen" />
               
 
                            </div>

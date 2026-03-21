@@ -14,7 +14,7 @@ export const client = createClient({
 const builder = createImageUrlBuilder(client)
 
 export const urlFor = (source: SanityImageSource | any) => {
-  return builder.image(source)
+  return builder.image(source).format('webp').auto('format').fit('max').width(800);
 }
 
 

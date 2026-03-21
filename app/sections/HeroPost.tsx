@@ -11,7 +11,7 @@ export default function HeroPost({data} : PropsHeroSection) {
 
     return (
         <div className='w-full h-96'>
-         <Image
+         <Image width={500} height={500}
               className='top-0 left-0 w-full h-full object-cover'
               src={urlFor(data?.primaryPhoto?.imagenPC?.asset).url()}
               alt="hola"

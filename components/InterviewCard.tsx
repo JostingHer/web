@@ -19,7 +19,7 @@ function InterviewCard({ interview }: PropsInterviewCard) {
     >
       <div className="overflow-hidden shadow-lg w-full aspect-square group">
         <div className='w-full aspect-auto'>
-          <Image
+          <Image width={500} height={500}
             className="w-full aspect-auto object-cover transition-transform duration-300 hover:scale-105"
             src={urlFor(interview?.image?.asset).url()}
             alt={interview.title}

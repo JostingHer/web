@@ -30,7 +30,7 @@ const HeroBlog = ({data} : PropsHeroSection) => {
   return (
   <>
           <div className='w-full h-screen'>
-          <Image
+          <Image width={500} height={500}
               className='top-0 left-0 w-full h-screen object-cover'
               src={urlFor(dataHero?.heroBlog.background?.imagenPC?.asset).url()}
               alt="hola"
